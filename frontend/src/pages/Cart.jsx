@@ -1,8 +1,11 @@
 import { useContext } from "react";
 import { StoreContext } from "../context/StoreContext";
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const { cartItems, food_list, removeFromCart, getTotalCartPrice } = useContext(StoreContext);
+
+    const navigate = useNavigate();
 
     return (
         <div className="mt-24">
@@ -44,20 +47,20 @@ const Cart = () => {
                     <div className="flex justify-between text-[#555]">
                         <div>
                             <p>Subtotal</p>
-                            <p>{getTotalCartPrice()}</p>
+                            <p>${getTotalCartPrice()}</p>
                         </div>
                         <hr className="my-2.5" />
                         <div>
                             <p>Delivery Fee</p>
-                            <p>{ getTotalCartPrice() === 0 ? 0 : 2}</p>
+                            <p>${getTotalCartPrice() === 0 ? 0 : 2}</p>
                         </div>
                         <hr className="my-2.5" />
                         <div>
                             <p>Total</p>
-                            <p>{getTotalCartPrice() === 0 ? 0 : getTotalCartPrice() +2}</p>
+                            <p>${getTotalCartPrice() === 0 ? 0 : getTotalCartPrice() + 2}</p>
                         </div>
                     </div>
-                    <button className="border-none text-white bg-[#FF4D25] w-[200px] lg:w-[15vw] cursor-pointer rounded-md py-3 text-xs md:text-base">PROCEED TO CHECKOUT</button>
+                    <button className="border-none text-white bg-[#FF4D25] w-[200px] lg:w-[15vw] cursor-pointer rounded-md py-3 text-xs md:text-base" onClick={() => navigate('/checkout')}>PROCEED TO CHECKOUT</button>
                 </div>
                 <div className="justify-start">
                     <div>
